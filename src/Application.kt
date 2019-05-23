@@ -10,6 +10,8 @@ import io.ktor.http.content.*
 import io.ktor.sessions.*
 import io.ktor.features.*
 import io.ktor.gson.*
+import linhdo.backend.inface.users.UserDao
+import linhdo.backend.inface.users.user
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -29,6 +31,7 @@ fun Application.module() {
     }
 
     routing {
+        user(UserDao())
         get("/") {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
